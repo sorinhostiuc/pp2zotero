@@ -1,0 +1,16 @@
+{
+  "manifest_version": 2,
+  "name": "PP2Zotero",
+  "version": "3.0.3",
+  "description": "Convert Paperpile citations in Word documents to Zotero citations",
+  "author": "Sorin Hostiuc",
+  "homepage_url": "https://github.com/mapispev/pp2zotero",
+  "applications": {
+    "zotero": {
+      "id": "pp2zotero@hostiuc.com",
+      "update_url": "https://github.com/mapispev/pp2zotero/releases/latest/download/update.json",
+      "strict_min_version": "6.999",
+      "strict_max_version": "9.*"
+    }
+  }
+}

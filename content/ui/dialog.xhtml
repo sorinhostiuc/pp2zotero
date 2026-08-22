@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8" />
+  <title>PP2Zotero</title>
+  <link rel="stylesheet" href="dialog.css" />
+</head>
+<body>
+
+  <!-- SCREEN 1: File Select -->
+  <div id="screen-file" class="screen active">
+    <div class="plugin-header">
+      <div class="plugin-logo">P&#x2192;Z</div>
+      <div class="plugin-header-text">
+        <div class="plugin-name">Paperpile &#x2192; Zotero</div>
+        <div class="plugin-version">v3.0.0 &#xB7; Citation Converter</div>
+      </div>
+    </div>
+
+    <div class="file-select-content">
+      <div id="file-drop-zone" class="file-drop-zone">
+        <div class="file-drop-icon">&#x1F4C4;</div>
+        <div class="file-drop-text">
+          Drag a <strong>.docx</strong> file here<br />
+          or click to browse
+        </div>
+      </div>
+
+      <div id="file-selected" class="file-selected">
+        <div class="file-icon">&#x1F4DD;</div>
+        <div class="file-info">
+          <div id="file-name" class="file-name"></div>
+          <div id="file-meta" class="file-meta"></div>
+        </div>
+        <div class="file-check">&#x2713;</div>
+      </div>
+
+      <div class="options-section">
+        <div class="option-row">
+          <input type="checkbox" id="opt-overwrite" />
+          <label for="opt-overwrite">Overwrite original file (default: save as <em>filename_zotero.docx</em>)</label>
+        </div>
+        <div class="option-row">
+          <input type="checkbox" id="opt-backup" checked="checked" />
+          <label for="opt-backup">Create automatic backup before conversion (.docx.bak)</label>
+        </div>
+        <div class="option-row">
+          <input type="checkbox" id="opt-auto-import" checked="checked" />
+          <label for="opt-auto-import">Auto-import missing references from DOI (via CrossRef)</label>
+        </div>
+        <div style="display:flex;gap:12px;width:100%;">
+          <div style="flex:1;display:flex;flex-direction:column;gap:3px;">
+            <span style="font-size:11px;color:var(--text-muted);">Match strategy</span>
+            <div class="seg-control" id="opt-match-strategy">
+              <div class="seg-btn active" data-value="doi_title_year">DOI + Title</div>
+              <div class="seg-btn" data-value="doi_only">DOI only</div>
+              <div class="seg-btn" data-value="title_only">Title only</div>
+            </div>
+          </div>
+          <div style="flex:1;display:flex;flex-direction:column;gap:3px;">
+            <span style="font-size:11px;color:var(--text-muted);">Save references to</span>
+            <div style="display:flex;gap:4px;align-items:center;">
+              <button class="collection-btn" id="opt-collection-btn">My Library</button>
+              <button class="btn btn-secondary" id="btn-new-collection" style="padding:3px 8px;font-size:10px;">+</button>
+            </div>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:3px;width:100%;">
+          <span style="font-size:11px;color:var(--text-muted);">Citation mode in output document</span>
+          <div class="seg-control" id="opt-field-mode">
+            <div class="seg-btn active" data-value="fieldcodes">Field codes</div>
+            <div class="seg-btn" data-value="bookmarks">Bookmarks</div>
+            <div class="seg-btn" data-value="referencemarks">Reference Marks (ODF)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn btn-secondary" id="btn-cancel-1">Cancel</button>
+      <button class="btn btn-primary" id="btn-scan" disabled="disabled">&#x1F50D; Scan document</button>
+    </div>
+  </div>
+
+  <!-- SCREEN 2: Scan Results -->
+  <div id="screen-results" class="screen">
+    <div class="stats-bar">
+      <div class="stat-item"><div id="stat-unique" class="stat-number">0</div><div class="stat-label">Unique refs</div></div>
+      <div class="stat-item"><div id="stat-citations" class="stat-number">0</div><div class="stat-label">Citations</div></div>
+      <div class="stat-item stat-green"><div id="stat-matched" class="stat-number">0</div><div class="stat-label">Exact match</div></div>
+      <div class="stat-item stat-red"><div id="stat-missing" class="stat-number">0</div><div class="stat-label">Missing</div></div>
+      <div class="stat-item stat-blue"><div id="stat-imported" class="stat-number">0</div><div class="stat-label">Imported</div></div>
+    </div>
+
+    <div class="results-table-wrap">
+      <table class="results-table">
+        <thead>
+          <tr>
+            <th class="col-status"></th>
+            <th class="col-idx">#</th>
+            <th class="col-title" data-sort="title">Title</th>
+            <th class="col-authors" data-sort="authors">Authors</th>
+            <th class="col-year" data-sort="year">Year</th>
+            <th class="col-doi" data-sort="doi">DOI</th>
+            <th class="col-match" data-sort="match">Match status</th>
+            <th class="col-action">Action</th>
+          </tr>
+        </thead>
+        <tbody id="results-tbody"></tbody>
+      </table>
+    </div>
+
+    <div class="bottom-bar">
+      <div class="bottom-bar-left">
+        <div class="option-row" style="padding:0">
+          <input type="checkbox" id="opt-regen-bibl" checked="checked" />
+          <label for="opt-regen-bibl" style="font-size:11px">Regenerate bibliography</label>
+        </div>
+      </div>
+      <div class="bottom-bar-right">
+        <button class="btn btn-secondary" id="btn-cancel-2">Cancel</button>
+        <button class="btn btn-primary" id="btn-convert">&#x1F504; Convert <span id="convert-count">0/0</span></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCREEN 3: Progress -->
+  <div id="screen-progress" class="screen">
+    <div class="progress-content">
+      <div class="progress-icon">&#x2699;&#xFE0F;</div>
+      <div class="progress-title">Converting citations...</div>
+      <div class="progress-bar-container">
+        <div id="progress-bar" class="progress-bar-fill"></div>
+      </div>
+      <div id="progress-detail" class="progress-detail"></div>
+      <div id="progress-substep" class="progress-substep"></div>
+    </div>
+  </div>
+
+  <!-- SCREEN 4: Complete -->
+  <div id="screen-complete" class="screen">
+    <div class="complete-content">
+      <div class="complete-icon">&#x2705;</div>
+      <div class="complete-title">Conversion completed successfully</div>
+
+      <div id="complete-summary" class="complete-summary"></div>
+
+      <div id="warning-box" class="warning-box" style="display:none">
+        <span class="warn-icon">&#x26A0;&#xFE0F;</span>
+        <span class="warn-text" id="warning-text"></span>
+      </div>
+
+      <div class="btn-row" style="border:none; padding:8px 0;">
+        <button class="btn btn-secondary" id="btn-copy-report">&#x1F4CB; Copy report</button>
+        <button class="btn btn-secondary" id="btn-export-report">&#x1F4BE; Export report</button>
+        <button class="btn btn-secondary" id="btn-open-file">&#x1F4C2; Open in Word</button>
+        <button class="btn btn-primary" id="btn-close">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="dialog.js"></script>
+</body>
+</html>

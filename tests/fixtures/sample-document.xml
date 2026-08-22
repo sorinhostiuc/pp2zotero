@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">
+<w:body>
+<w:p>
+  <w:r><w:t>Some text before citation </w:t></w:r>
+  <w:r><w:fldChar w:fldCharType="begin"/></w:r>
+  <w:r><w:instrText xml:space="preserve"> ADDIN PAPERPILE_CITATION {"id":"BpKn5","citationItems":[{"id":"BpKn5/item1","itemData":{"type":"article-journal","title":"Bioethics and informed consent","author":[{"family":"Hostiuc","given":"Sorin"}],"issued":{"date-parts":[["2021"]]},"DOI":"10.1007/s00414-021-02612-0","container-title":"Int J Legal Med"}}],"properties":{"formattedCitation":"(Hostiuc, 2021)","plainCitation":"(Hostiuc, 2021)","noteIndex":0}} </w:instrText></w:r>
+  <w:r><w:fldChar w:fldCharType="separate"/></w:r>
+  <w:r><w:t>(Hostiuc, 2021)</w:t></w:r>
+  <w:r><w:fldChar w:fldCharType="end"/></w:r>
+  <w:r><w:t> and more text.</w:t></w:r>
+</w:p>
+<w:p>
+  <w:r><w:fldChar w:fldCharType="begin"/></w:r>
+  <w:r><w:instrText xml:space="preserve"> ADDIN PAPERPILE_CITATION {"id":"XkRm2","citationItems":[{"id":"XkRm2/item1","itemData":{"type":"book","title":"Principiile dreptului penal roman","author":[{"family":"Antoniu","given":"George"}],"issued":{"date-parts":[["2015"]]},"publisher":"Universul Juridic"}},{"id":"XkRm2/item2","itemData":{"type":"article-journal","title":"GDPR implications for biobank research","author":[{"family":"Staunton","given":"Ciara"},{"family":"Slokenberga","given":"Santa"}],"issued":{"date-parts":[["2023"]]},"DOI":"10.1186/s12910-023-00925-w","container-title":"BMC Med Ethics"},"locator":"45","label":"page","prefix":"vezi "}],"properties":{"formattedCitation":"(Antoniu, 2015; vezi Staunton &amp; Slokenberga, 2023, p. 45)","plainCitation":"(Antoniu, 2015; vezi Staunton &amp; Slokenberga, 2023, p. 45)","noteIndex":0}} </w:instrText></w:r>
+  <w:r><w:fldChar w:fldCharType="separate"/></w:r>
+  <w:r><w:t>(Antoniu, 2015; vezi Staunton &amp; Slokenberga, 2023, p. 45)</w:t></w:r>
+  <w:r><w:fldChar w:fldCharType="end"/></w:r>
+</w:p>
+<w:p>
+  <w:r><w:fldChar w:fldCharType="begin"/></w:r>
+  <w:r><w:instrText xml:space="preserve"> ADDIN PAPERPILE_BIBL {"entries":[],"properties":{"formattedBibliography":"..."}} </w:instrText></w:r>
+  <w:r><w:fldChar w:fldCharType="separate"/></w:r>
+  <w:r><w:t>Bibliography text here</w:t></w:r>
+  <w:r><w:fldChar w:fldCharType="end"/></w:r>
+</w:p>
+</w:body>
+</w:document>

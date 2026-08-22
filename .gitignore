@@ -1,0 +1,6 @@
+node_modules/
+*.xpi
+update.json
+.DS_Store
+.claude/
+CLAUDE.md
