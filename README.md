@@ -1,29 +1,42 @@
-# PP2Zotero
+# Paperpile to Zotero
 
-PP2Zotero converts Paperpile citation fields in Microsoft Word `.docx` files into Zotero citation fields. It works on a copy by default, supports batch conversion, and matches references by identifiers and bibliographic metadata.
+Paperpile to Zotero converts live Paperpile citations in Word documents into editable Zotero citations and rebuilds the bibliography.
 
-## Requirements
+![Paperpile to Zotero conversion window](docs/images/paperpile-zotero.png)
 
-- Zotero versions 7-9
-- A `.docx` document created with the Paperpile Word add-in
-- Microsoft Word with the Zotero plugin for checking the converted document
+## What it does
+
+- Reads the CSL metadata stored in Paperpile citation fields.
+- Matches references against your Zotero library by DOI and normalized title.
+- Can retrieve missing items by DOI through Crossref.
+- Rebuilds citations and the bibliography in Zotero format.
+- Preserves the source manuscript and creates a separate converted file.
+- Can create an additional safety backup before conversion.
+
+## Using the converter
+
+1. Open the converter from Zotero's **Tools** menu.
+2. Select the Paperpile `.docx` manuscript.
+3. Review the matched, imported, and missing references.
+4. Convert the document.
+5. Open the new file and run Zotero **Refresh**.
 
 ## Installation
 
-Download `pp2zotero-3.0.3.xpi` from the latest GitHub release. In Zotero, open `Tools > Plugins`, select `Install Add-on From File`, and choose the downloaded file.
+1. Download the latest `.xpi` from [Releases](https://github.com/sorinhostiuc/pp2zotero/releases/latest).
+2. In Zotero, open **Tools > Plugins**.
+3. Choose **Install Plugin From File**, select the `.xpi`, and restart Zotero if asked.
 
-## Converting a document
+The plugin supports Zotero 7 through 9.
 
-Open `Tools > Convert Paperpile Citations...` in Zotero. Select the `.docx` files, review the matching results, then start the conversion. Unless you enable overwriting, PP2Zotero writes `filename_zotero.docx` beside the original file.
+## Development
 
-The converter can search the Zotero library by DOI, PMID, ISBN, title, and year. When enabled, it imports missing DOI records; failing that, it creates items from the citation metadata. Unresolved citations receive Word comments so that they can be checked manually.
-
-See [HELP.md](HELP.md) for every option and the troubleshooting notes.
-
-## Building from source
-
-Install Node.js and run `npm install`. Tests run with `npm test`. On Windows, build the XPI with `npm run build:windows`; on Unix-like systems, use `npm run build`.
+```bash
+npm ci
+npm test
+npm run build
+```
 
 ## License
 
-PP2Zotero is released under the MIT License. See [LICENSE](LICENSE).
+[MIT](LICENSE)
