@@ -1,13 +1,13 @@
 {
   "name": "pp2zotero",
-  "version": "3.0.3",
+  "version": "3.0.4",
   "private": true,
   "description": "Convert Paperpile citations in Word documents to Zotero citations",
   "author": "Sorin Hostiuc",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/mapispev/pp2zotero.git"
+    "url": "https://github.com/sorinhostiuc/pp2zotero.git"
   },
   "scripts": {
     "build": "bash build.sh",

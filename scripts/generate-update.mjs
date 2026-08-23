@@ -7,7 +7,7 @@ if (!xpi) throw new Error("Usage: node scripts/generate-update.mjs <xpi>");
 
 const manifest = JSON.parse(readFileSync("manifest.json", "utf8"));
 const zotero = manifest.applications.zotero;
-const repository = process.env.GITHUB_REPOSITORY || "mapispev/pp2zotero";
+const repository = process.env.GITHUB_REPOSITORY || "sorinhostiuc/pp2zotero";
 const tag = process.env.GITHUB_REF_NAME || `v${manifest.version}`;
 const hash = createHash("sha256").update(readFileSync(xpi)).digest("hex");
 
