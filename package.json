@@ -1,6 +1,6 @@
 {
   "name": "pp2zotero",
-  "version": "3.0.4",
+  "version": "3.0.5",
   "private": true,
   "description": "Convert Paperpile citations in Word documents to Zotero citations",
   "author": "Sorin Hostiuc",

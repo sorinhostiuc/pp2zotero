@@ -27,7 +27,7 @@ Paperpile to Zotero converts live Paperpile citations in Word documents into edi
 2. In Zotero, open **Tools > Plugins**.
 3. Choose **Install Plugin From File**, select the `.xpi`, and restart Zotero if asked.
 
-The plugin supports Zotero 7 through 9.
+The plugin supports Zotero 7 and later (including Zotero 10 and beyond).
 
 ## Development
 
